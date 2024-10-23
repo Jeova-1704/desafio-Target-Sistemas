@@ -2,7 +2,7 @@ import json
 
 def calcular_faturamento(dados):
     
-    faturamento_diario = [float(valor) for dia in dados["faturamento"].values() for valor in dia if valor > 0]
+    faturamento_diario = [dia['valor'] for dia in dados if dia['valor'] > 0]
     
     if not faturamento_diario:
         return {
@@ -26,7 +26,7 @@ def calcular_faturamento(dados):
     }
     
 if __name__ == "__main__":
-    with open("faturamento.json") as file:
+    with open("dados.json") as file:
         dados = json.load(file)
         
     resultado = calcular_faturamento(dados)
